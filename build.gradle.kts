@@ -124,6 +124,7 @@ sonarqube {
 
 android {
     compileSdk = ConfigData.compileSdkVersion
+    namespace = "com.atcc.logger"
 
     defaultConfig {
         minSdk = ConfigData.minSdkVersion
@@ -143,7 +144,6 @@ android {
     testOptions {
         unitTests.isIncludeAndroidResources = true
     }
-    namespace = "com.atcc.logger"
 }
 
 dependencies {
