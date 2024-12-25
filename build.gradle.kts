@@ -147,5 +147,5 @@ android {
 }
 
 dependencies {
-    testImplementation("junit:junit:${Versions.junitVersion}")
+    testImplementation(libs.junit)
 }
