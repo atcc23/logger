@@ -4,12 +4,11 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     `maven-publish`
     id("com.android.library")
-    id("kotlin-android")
+    alias(libs.plugins.kotlin.android)
     id("kotlin-parcelize")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
     id("jacoco")
     id("org.sonarqube")
-    id("org.jetbrains.kotlin.android")
 }
 
 apply {
@@ -128,7 +127,7 @@ android {
 
     defaultConfig {
         minSdk = ConfigData.minSdkVersion
-        targetSdk = ConfigData.targetSdkVersion
+
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
