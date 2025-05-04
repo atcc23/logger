@@ -1,4 +1,5 @@
 import org.gradle.jvm.tasks.Jar
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -22,12 +23,14 @@ val artifactName = "logger"
 val coveragePath = "testReleaseUnitTestCoverage"
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "1.8"
-        kotlinOptions.freeCompilerArgs = listOf(
-            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-            "-opt-in=kotlinx.coroutines.FlowPreview",
-            "-opt-in=kotlinx.coroutines.ObsoleteCoroutinesApi"
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
+        compilerOptions.freeCompilerArgs.set(
+            listOf(
+                "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-opt-in=kotlinx.coroutines.FlowPreview",
+                "-opt-in=kotlinx.coroutines.ObsoleteCoroutinesApi"
+            )
         )
     }
 }
@@ -138,6 +141,11 @@ android {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     testOptions {
